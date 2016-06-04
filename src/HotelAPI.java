@@ -3,23 +3,23 @@
  */
 public interface HotelAPI {
 
-    boolean addCustomer(String name, String lastName, String address);
+    void addCustomer(String name, String lastName, String address);
 
-    boolean deleteCustomer(int customerID);
+    void deleteCustomer(int customerID);
 
-    boolean addRoom(int Capacity, int numberOfBeds, boolean isBalcony, String roomType, double price);
+    void addRoom(int Capacity, int numberOfBeds, boolean isBalcony, String roomType, double price);
 
-    boolean deleteRoom(int roomID);
+    void deleteRoom(int roomID);
 
-    boolean reserve(int customerID, int roomID, String startDate, String endDate);
+    void reserve(int customerID, int roomID, String startDate, String endDate);
 
-    boolean cancelReservation(int reservationID);
+    void cancelReservation(int reservationID);
 
-    boolean hireStaff(String name, String lastName, String address, String position);
+    void hireStaff(String name, String lastName, String address, String position);
 
-    boolean fireStaff(int staffID);
+    void fireStaff(int staffID);
 
-    boolean isRoomFree(int roomID);
+    boolean isRoomFree(int roomID, String startDate, String endDate);
 
     double showBill(int reservationID);
 
