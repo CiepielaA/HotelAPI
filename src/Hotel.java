@@ -52,6 +52,21 @@ public class Hotel {
         return true;
     }
 
+    public boolean deleteCustomer(int customerID) {
+        try {
+            PreparedStatement prepStmt = conn.prepareStatement(
+                    "call deletecustomer(?)");
+            prepStmt.setString(1, ""+ customerID);
+
+            prepStmt.execute();
+        } catch (SQLException e) {
+            System.err.println("Delete customer Error!");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     public boolean addRoom(int Capacity, int numberOFBeds, boolean isBalcony, String roomType, double price) {
         try {
             PreparedStatement prepStmt = conn.prepareStatement(
