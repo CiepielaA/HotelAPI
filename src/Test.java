@@ -44,8 +44,9 @@ public class Test {
         System.out.println("2: " + hotel.isRoomFree(0, "2016-07-09", "2016-08-11"));
         System.out.println("3: " + hotel.isRoomFree(0, "2016-11-09", "2016-12-09"));
         System.out.println("4: " + hotel.isRoomFree(0, "2016-05-09", "2016-05-21"));
-        System.out.println("4: " + hotel.isRoomFree(0, "2016-06-05", "2016-12-21"));
-        System.out.println("4: " + hotel.isRoomFree(0, "2017-06-05", "2017-12-21"));
+        System.out.println("5: " + hotel.isRoomFree(0, "2016-06-05", "2016-12-21"));
+        System.out.println("6: " + hotel.isRoomFree(0, "2017-06-05", "2017-12-21"));
+        System.out.println("7: " + hotel.isRoomFree(0, "2016-10-11", "2016-11-07"));
 
 
         hotel.closeDataBaseConnection();
