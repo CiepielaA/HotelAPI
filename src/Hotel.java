@@ -77,6 +77,39 @@ public class Hotel {
         return true;
     }
 
+    public boolean reserve(int cID, int rID, String startDate, String endDate) {
+        try {
+            PreparedStatement prepStmt = conn.prepareStatement(
+                    "call reserve(?, ?, ?, ?)");
+            prepStmt.setString(1, ""+ cID);
+            prepStmt.setString(2, "" + rID);
+            prepStmt.setString(3, startDate);
+            prepStmt.setString(4, endDate);
+
+            prepStmt.execute();
+        } catch (SQLException e) {
+            System.err.println("Reserve Error!");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean cancelReservation(int reservationID) {
+        try {
+            PreparedStatement prepStmt = conn.prepareStatement(
+                    "call cancelreservation(?)");
+            prepStmt.setString(1, ""+ reservationID);
+
+            prepStmt.execute();
+        } catch (SQLException e) {
+            System.err.println("Reserve Error!");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 
     public void closeConnection() {
         try {

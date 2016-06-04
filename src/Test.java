@@ -10,6 +10,14 @@ public class Test {
 //        hotel.addCustomer("Abdul", "Dabdul", "Wal sie 9999");
 
 //        hotel.addRoom(5, 5, true, "royal", 50);
+//
+//        hotel.reserve(0, 0, "2016-06-06", "2016-06-10");
+
+//       hotel.cancelReservation(0);
+
+
+
+
 
 
         hotel.closeConnection();
