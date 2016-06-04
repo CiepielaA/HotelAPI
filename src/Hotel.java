@@ -92,6 +92,21 @@ public class Hotel {
         return true;
     }
 
+    public boolean deleteRoom(int roomID) {
+        try {
+            PreparedStatement prepStmt = conn.prepareStatement(
+                    "call deleteroom(?)");
+            prepStmt.setString(1, ""+ roomID);
+
+            prepStmt.execute();
+        } catch (SQLException e) {
+            System.err.println("Delete room Error!");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     public boolean reserve(int cID, int rID, String startDate, String endDate) {
         try {
             PreparedStatement prepStmt = conn.prepareStatement(

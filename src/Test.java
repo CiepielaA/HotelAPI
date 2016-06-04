@@ -14,8 +14,10 @@ public class Test {
 //        hotel.reserve(0, 0, "2016-06-06", "2016-06-10");
 
 //       hotel.cancelReservation(0);
-        
-        hotel.deleteCustomer(0);
+
+//        hotel.deleteCustomer(0);
+
+        hotel.deleteRoom(0);
 
 
 
