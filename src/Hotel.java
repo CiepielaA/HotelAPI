@@ -8,7 +8,7 @@ import java.sql.*;
 public class Hotel {
 
     public static final String DRIVER = "com.mysql.jdbc.Driver";
-    public static final String DB_URL = "jdbc:mysql://192.168.15.85:3306/hotel";
+    public static final String DB_URL = "jdbc:mysql://192.168.15.51:3306/hotel";
 
     private Connection conn;
     private Statement stat;
@@ -170,6 +170,24 @@ public class Hotel {
             return false;
         }
         return true;
+    }
+
+    public boolean isRoomFree(int roomID) {
+
+        try {
+            PreparedStatement prepStmt = conn.prepareStatement(
+                    "call isfree(?)");
+            prepStmt.setString(1, "" + roomID);
+            ResultSet result = prepStmt.executeQuery();
+            while(result.next()){
+                return result.getBoolean("if");
+            }
+            return false;
+        } catch (SQLException e) {
+            System.err.println("is free room Error!");
+            e.printStackTrace();
+            return false;
+        }
     }
 
 
