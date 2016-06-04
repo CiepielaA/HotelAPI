@@ -4,8 +4,14 @@
 
 import java.sql.*;
 
+/**
+ *  1. Create new HotelDataBaseAPI object.
+ *  2. OPEN CONNECTION with database - openConnection() method.
+ *  3. Use API.
+ *  4. At the end CLOSE CONNECTION with database - closeConnection() method.
+ */
 
-public class Hotel {
+public class HotelDataBaseAPI implements HotelAPI {
 
     public static final String DRIVER = "com.mysql.jdbc.Driver";
     public static final String DB_URL = "jdbc:mysql://192.168.15.51:3306/hotel";
@@ -13,7 +19,7 @@ public class Hotel {
     private Connection conn;
     private Statement stat;
 
-    public Hotel() {
+    public void openConnection(){
         try {
             Class.forName(DRIVER).newInstance();
         } catch (ClassNotFoundException e) {
@@ -34,15 +40,14 @@ public class Hotel {
             System.err.println("Problem z otwarciem polaczenia");
             e.printStackTrace();
         }
-
     }
 
-    public boolean addCustomer(String imie, String nazwisko, String adres) {
+    public boolean addCustomer(String name, String lastName, String address) {
         try {
             PreparedStatement prepStmt = conn.prepareStatement(
                     "call addklient(?, ?)");
-            prepStmt.setString(1, nazwisko + " " + imie);
-            prepStmt.setString(2, adres);
+            prepStmt.setString(1, lastName + " " + name);
+            prepStmt.setString(2, address);
             prepStmt.execute();
         } catch (SQLException e) {
             System.err.println("Add client Error!");
@@ -67,13 +72,13 @@ public class Hotel {
         return true;
     }
 
-    public boolean addRoom(int Capacity, int numberOFBeds, boolean isBalcony, String roomType, double price) {
+    public boolean addRoom(int Capacity, int numberOfBeds, boolean isBalcony, String roomType, double price) {
         try {
             PreparedStatement prepStmt = conn.prepareStatement(
                     "call addroom(?, ?, ?, ?, ?, ?)");
             prepStmt.setString(1, "0");
             prepStmt.setString(2, "" + Capacity);
-            prepStmt.setString(3, "" + numberOFBeds);
+            prepStmt.setString(3, "" + numberOfBeds);
 
             if(isBalcony) {
                 prepStmt.setString(4, "1");
@@ -107,12 +112,12 @@ public class Hotel {
         return true;
     }
 
-    public boolean reserve(int cID, int rID, String startDate, String endDate) {
+    public boolean reserve(int customerID, int roomID, String startDate, String endDate) {
         try {
             PreparedStatement prepStmt = conn.prepareStatement(
                     "call reserve(?, ?, ?, ?)");
-            prepStmt.setString(1, ""+ cID);
-            prepStmt.setString(2, "" + rID);
+            prepStmt.setString(1, ""+ customerID);
+            prepStmt.setString(2, "" + roomID);
             prepStmt.setString(3, startDate);
             prepStmt.setString(4, endDate);
 
@@ -207,9 +212,6 @@ public class Hotel {
             return 0.0;
         }
     }
-
-
-
 
     public void closeConnection() {
         try {
