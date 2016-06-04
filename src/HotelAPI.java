@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Created by Adrian on 04.06.2016.
  */
@@ -22,5 +24,7 @@ public interface HotelAPI {
     boolean isRoomFree(int roomID, String startDate, String endDate);
 
     double showBill(int reservationID);
+
+    List<Integer> checkRoomAvailability(int capacity, int nrOfBeds, int isBalcony, String roomType);
 
 }

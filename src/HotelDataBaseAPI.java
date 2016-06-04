@@ -3,6 +3,8 @@
  */
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *  1. Create new HotelDataBaseAPI object.
@@ -196,6 +198,28 @@ public class HotelDataBaseAPI implements HotelAPI {
             System.err.println("is free room Error!");
             e.printStackTrace();
             return 0.0;
+        }
+    }
+
+
+    public List<Integer> checkRoomAvailability(int capacity, int nrOfBeds, int isBalcony, String roomType) {
+        List<Integer> rooms = new ArrayList<>();
+        try {
+            PreparedStatement prepStmt = conn.prepareStatement(
+                    "call checkroom(?, ?, ?, ?)");
+            prepStmt.setString(1, "" + capacity);
+            prepStmt.setString(2, "" + nrOfBeds);
+            prepStmt.setString(3, "" + isBalcony);
+            prepStmt.setString(4, roomType);
+            ResultSet result = prepStmt.executeQuery();
+            while(result.next()){
+                 rooms.add(result.getInt("rID"));
+            }
+            return rooms;
+        } catch (SQLException e) {
+            System.err.println("check room Error!");
+            e.printStackTrace();
+            return rooms;
         }
     }
 
