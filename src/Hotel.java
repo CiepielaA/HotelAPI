@@ -190,6 +190,26 @@ public class Hotel {
         }
     }
 
+    public double showBill(int reservationID) {
+
+        try {
+            PreparedStatement prepStmt = conn.prepareStatement(
+                    "call showbill(?)");
+            prepStmt.setString(1, "" + reservationID);
+            ResultSet result = prepStmt.executeQuery();
+            while(result.next()){
+                return result.getDouble("bill");
+            }
+            return 0.0;
+        } catch (SQLException e) {
+            System.err.println("is free room Error!");
+            e.printStackTrace();
+            return 0.0;
+        }
+    }
+
+
+
 
     public void closeConnection() {
         try {

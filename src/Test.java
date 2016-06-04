@@ -22,8 +22,9 @@ public class Test {
 //        hotel.hireStaff("Jacek", "Dupa", "Dupa 123", "cook");
 
 //        hotel.fireStaff(0);
+//        System.out.println(hotel.isRoomFree(1));
 
-        System.out.println(hotel.isRoomFree(1));
+//        System.out.println(hotel.showBill(0));
 
 
 
