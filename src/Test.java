@@ -17,7 +17,11 @@ public class Test {
 
 //        hotel.deleteCustomer(0);
 
-        hotel.deleteRoom(0);
+//        hotel.deleteRoom(0);
+
+//        hotel.hireStaff("Jacek", "Dupa", "Dupa 123", "cook");
+
+        hotel.fireStaff(0);
 
 
 

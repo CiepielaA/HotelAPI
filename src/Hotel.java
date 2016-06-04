@@ -140,6 +140,38 @@ public class Hotel {
         return true;
     }
 
+    public boolean hireStaff(String name, String lastName, String address, String position) {
+        try {
+            PreparedStatement prepStmt = conn.prepareStatement(
+                    "call hire(?, ?, ?, ?)");
+            prepStmt.setString(1, "0");
+            prepStmt.setString(2, lastName + " " + name);
+            prepStmt.setString(3, address);
+            prepStmt.setString(4, position);
+
+            prepStmt.execute();
+        } catch (SQLException e) {
+            System.err.println("hire staff Error!");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean fireStaff(int staffID) {
+        try {
+            PreparedStatement prepStmt = conn.prepareStatement(
+                    "call fire(?)");
+            prepStmt.setString(1, "" + staffID);
+            prepStmt.execute();
+        } catch (SQLException e) {
+            System.err.println("fire staff Error!");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 
     public void closeConnection() {
         try {
